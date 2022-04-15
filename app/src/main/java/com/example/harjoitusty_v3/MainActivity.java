@@ -13,13 +13,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends OptionMenuActivity {
 
     Button button1, button2;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
+    private Toolbar toolbar;
 
 
     @Override
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         button1 = (Button) findViewById(R.id.button);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
 
@@ -84,8 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void seeProfile(){
-        Intent intent = new Intent(MainActivity.this, Profile.class);
-        startActivity(intent);
+
     }
 
     public void searchMovie(View v){
