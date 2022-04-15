@@ -33,7 +33,7 @@ public class MainActivity extends OptionMenuActivity {
 
 
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        /*drawerLayout = (DrawerLayout) findViewById(R.id.my_drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
 ;
 
@@ -47,15 +47,15 @@ public class MainActivity extends OptionMenuActivity {
 
         drawerLayout.addDrawerListener(drawerToggle);
 
-        setupDrawerContent(navigationView);
+        setupDrawerContent(navigationView); */
 
 
     }
-
+    /*
     private ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open,  R.string.nav_close);
-    }
-
+    } */
+    /*
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -65,8 +65,8 @@ public class MainActivity extends OptionMenuActivity {
                         return true;
                     }
                 });
-    }
-
+    } */
+    /*
     public void selectDrawerItem(MenuItem menuItem) {
 
         if(menuItem.getItemId() == R.id.Profile) {
@@ -82,8 +82,8 @@ public class MainActivity extends OptionMenuActivity {
         setTitle(menuItem.getTitle());
         // Close the navigation drawer
         drawerLayout.closeDrawers();
-    }
-
+    } */
+    /*
     public void seeProfile(){
 
     }
@@ -97,8 +97,9 @@ public class MainActivity extends OptionMenuActivity {
     public void rankMovies(View v){
 
     }
-    /*Bring arraylist from "Read xml" class*/
-    public void readXML(View v){
+    /*
 
-    }
+    /*Bring arraylist from "Read xml" class*/
+    //public void readXML(View v){
+    // }
 }
