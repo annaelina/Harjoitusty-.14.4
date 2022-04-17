@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".Find_review">
 
+    <include
+        layout="@layout/toolbar" />
+
     <EditText
         android:id="@+id/lookMovie"
         android:layout_width="wrap_content"

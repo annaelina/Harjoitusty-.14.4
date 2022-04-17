@@ -5,15 +5,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 
-public class writereview extends OptionMenuActivity {
+public class writereview extends AppCompatActivity {
 
-    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_writereview);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
     }
 }

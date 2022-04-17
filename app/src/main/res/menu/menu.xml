@@ -5,6 +5,10 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/Mainpage"
+            android:title="Mainpage"/>
+
+        <item
             android:id="@+id/Profile"
             android:title="Profile"/>
 

@@ -23,13 +23,41 @@ public class OptionMenuActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.Profile:
-                Intent intent = new Intent(OptionMenuActivity.this, Profile.class);
-                startActivity(intent);
+                seeProfile();
                 return true;
-
+            case R.id.Mainpage:
+                seeMainpage();
+                return true;
+            case R.id.Findreview:
+                seeFindreview();
+                return true;
+            case R.id.login:
+                seeLogin();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void seeProfile(){
+        Intent intent = new Intent(OptionMenuActivity.this, Profile.class);
+        startActivity(intent);
+    }
+
+    public void seeMainpage(){
+        Intent intent = new Intent(OptionMenuActivity.this, MainActivity.class);
+        startActivity(intent);
+
+    }
+    public void seeFindreview(){
+        Intent intent = new Intent(OptionMenuActivity.this, Find_review.class);
+        startActivity(intent);
+
+    }
+    public void seeLogin(){
+        Intent intent = new Intent(OptionMenuActivity.this, login.class);
+        startActivity(intent);
+
     }
 
 }
