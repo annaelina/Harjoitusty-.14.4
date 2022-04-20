@@ -3,9 +3,18 @@ package com.example.harjoitusty_v3;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-public class Profile extends OptionMenuActivity {
+import java.util.ArrayList;
+
+public class Profile extends OptionMenuActivity{
+
+
 
     private Toolbar toolbar;
     @Override
@@ -14,5 +23,8 @@ public class Profile extends OptionMenuActivity {
         setContentView(R.layout.activity_profile);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
     }
+
+
 }
