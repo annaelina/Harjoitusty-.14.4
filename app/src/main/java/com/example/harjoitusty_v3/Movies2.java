@@ -1,11 +1,13 @@
 package com.example.harjoitusty_v3;
 
-public class Movies2 {
+import java.io.Serializable;
+
+public class Movies2 implements Serializable {
 
     String name;
     int id;
 
-    public Movies2(String name, int ID){
+    public Movies2(String name, int ID) {
         this.name = name;
         this.id = ID;
     }
@@ -16,6 +18,11 @@ public class Movies2 {
 
     public int getID(){
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
 }
