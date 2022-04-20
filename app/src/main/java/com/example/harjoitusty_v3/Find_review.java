@@ -1,17 +1,15 @@
 package com.example.harjoitusty_v3;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.graphics.Movie;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Xml;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import org.w3c.dom.Document;
@@ -19,24 +17,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -50,6 +37,8 @@ public class Find_review extends OptionMenuActivity {
     ListView listView;
     ArrayList<Movies2> arrayList = new ArrayList<>();
     ArrayAdapter<Movies2> adapter = null;
+    Movies2 selectedmovie = null;
+    Button button3;
     //File file = new File(context.getFilesDir() + "movies.txt");
     //ArrayList<Movies2> arrayList2 = new ArrayList<>();
     //ArrayList<String> userData = new ArrayList<String>();
@@ -59,6 +48,7 @@ public class Find_review extends OptionMenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_review);
 
+        button3 = (Button) findViewById(R.id.button3);
         listView = (ListView) findViewById(R.id.listview);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,6 +61,7 @@ public class Find_review extends OptionMenuActivity {
 
         writetoFile();
         readFile();
+
     }
 
     public void writetoFile() {
@@ -128,6 +119,7 @@ public class Find_review extends OptionMenuActivity {
             ois.close();
 
             listView(arrayList2);
+
             /*BufferedReader input = new BufferedReader(new FileReader(filename));
             //tähän jotain?
             String line;
@@ -152,11 +144,21 @@ public class Find_review extends OptionMenuActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Movies2 selectedmovie = (Movies2) listView.getItemAtPosition(i);
-                System.out.println(selectedmovie);
+                selectedmovie = (Movies2) listView.getItemAtPosition(i);
             }
+
         });
+
+
     }
+
+    public void giveReview(View v){
+
+            Intent intent = new Intent(Find_review.this, writereview.class);
+            intent.putExtra("key", selectedmovie);
+        }
+
+
 
 
 }
