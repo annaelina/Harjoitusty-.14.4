@@ -3,14 +3,22 @@ package com.example.harjoitusty_v3;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class writereview extends AppCompatActivity {
 
-    String name;
+    String name, comment;
+    Context context = writereview.this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +34,21 @@ public class writereview extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int rating = (int) ratingBar.getRating();
-                System.out.println(rating);
+                float rating = (float) ratingBar.getRating();
+                //System.out.println(rating);
+                Movie_rating movie_rating = new Movie_rating(new Float(rating), name, comment);
+                //writeFile(movie_rating);
+
+                Intent intent = new Intent(writereview.this, Profile.class);
+                intent.putExtra("key", movie_rating);
+                startActivity(intent);
+
             }
         });
 
-
     }
+
+
+
+
 }

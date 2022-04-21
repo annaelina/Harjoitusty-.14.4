@@ -75,9 +75,11 @@ public class Find_review extends OptionMenuActivity {
             doc.getDocumentElement().normalize();
             NodeList list = doc.getDocumentElement().getElementsByTagName("Event");
 
+            //tässä yritetään lukea Finnkino Events XML, laittaa tiedot Arraylistaan ja lisätä lista tiedostoon "movies.txt"
+            //miten sovelluksen seuraavalla avauskerralla päivittää tiedostoa niin, että siellä olevat elokuvat säilyvät
+            // --> mutta jos on tullut uusia elokuvia ne lisätään
 
-
-            FileOutputStream fos = new FileOutputStream(context.getFilesDir() + "movies.txt");
+            FileOutputStream fos = new FileOutputStream( context.getFilesDir() + "movies.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
             for (int i = 0; i < list.getLength(); i++) {
@@ -156,6 +158,7 @@ public class Find_review extends OptionMenuActivity {
 
 
     }
+
 
 
 
