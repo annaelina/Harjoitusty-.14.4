@@ -37,10 +37,11 @@ public class Find_review extends OptionMenuActivity {
     ListView listView;
     ArrayList<Movies2> arrayList = new ArrayList<>();
     ArrayAdapter<Movies2> adapter = null;
-    Movies2 selectedmovie = null;
+    ArrayList<Movies2> arrayList2;
+    public String name;
     Button button3;
     //File file = new File(context.getFilesDir() + "movies.txt");
-    //ArrayList<Movies2> arrayList2 = new ArrayList<>();
+   
     //ArrayList<String> userData = new ArrayList<String>();
 
     @Override
@@ -60,7 +61,8 @@ public class Find_review extends OptionMenuActivity {
 
 
         writetoFile();
-        readFile();
+        this.arrayList2 = readFile();
+        listView(this.arrayList2);
 
     }
 
@@ -95,13 +97,7 @@ public class Find_review extends OptionMenuActivity {
             }
             oos.writeObject(arrayList);
             oos.close();
-                    /*FileWriter fw = new FileWriter(filename);
-                    Writer output = new BufferedWriter(fw);
-                    int size = arrayList.size();
-                    for(int i=0; i<size; i++){
-                        output.write(arrayList.get(i)+"\n");
-                    }
-                    output.close();*/
+                
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -111,23 +107,15 @@ public class Find_review extends OptionMenuActivity {
         }
     }
 
-    public void readFile(){
+    public ArrayList<Movies2> readFile(){
         try{
             FileInputStream fis = new FileInputStream(context.getFilesDir() + "movies.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
             ArrayList<Movies2> arrayList2 = (ArrayList<Movies2>) ois.readObject();
             ois.close();
-
-            listView(arrayList2);
-
-            /*BufferedReader input = new BufferedReader(new FileReader(filename));
-            //tähän jotain?
-            String line;
-            Movies2 movies2;
-            while((line = input.readLine()) != null){
-                arrayList2.add();
-            }
-            input.close();*/
+            
+            return arrayList2;
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -135,16 +123,20 @@ public class Find_review extends OptionMenuActivity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public void listView(ArrayList<Movies2> arrayList2){
-        adapter = new ArrayAdapter<Movies2>(this, android.R.layout.simple_spinner_item, arrayList2);
+        adapter = new ArrayAdapter<Movies2>(this, android.R.layout.simple_list_item_activated_1, arrayList2);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedmovie = (Movies2) listView.getItemAtPosition(i);
+                Movies2 selectedmovie = (Movies2) listView.getItemAtPosition(i);
+                String name = selectedmovie.getName();
+                giveReview(name);
+
             }
 
         });
@@ -152,11 +144,18 @@ public class Find_review extends OptionMenuActivity {
 
     }
 
-    public void giveReview(View v){
+    public void giveReview(String name){
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Find_review.this, writereview.class);
+                intent.putExtra("key", name);
+                startActivity(intent);
+            }
+        });
 
-            Intent intent = new Intent(Find_review.this, writereview.class);
-            intent.putExtra("key", selectedmovie);
-        }
+
+    }
 
 
 
