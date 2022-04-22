@@ -28,7 +28,7 @@ public class Profile extends OptionMenuActivity{
     private Toolbar toolbar;
     ListView listView;
     Movie_rating movie_rating;
-    ArrayList<Movie_rating> arrayList;
+    ArrayList<Movie_rating> arrayList = new ArrayList<>();
     ArrayAdapter<Movie_rating> adapter = null;
     Context context = Profile.this;
 
@@ -40,63 +40,15 @@ public class Profile extends OptionMenuActivity{
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         listView = (ListView) findViewById(R.id.listview);
         setSupportActionBar(toolbar);
+        ArrayList<Movie_rating> arrayList = new ArrayList<>();
 
-        movie_rating = (Movie_rating) getIntent().getSerializableExtra("key");
-        writeFile(movie_rating);
-        readFile();
-
-    }
-
-    public void writeFile(Movie_rating movie_rating){
-        try{
-            FileOutputStream fos = new FileOutputStream(context.getFilesDir() + "movies_rating.txt", true);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(movie_rating);
-            oos.close();
-            System.out.println("Kirjoitettu");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileManager FM = new FileManager(movie_rating);
+        arrayList = FM.readFile(arrayList);
+        listView(arrayList);
 
     }
 
-    public void readFile(){
-        try{
-            FileInputStream fis = new FileInputStream(context.getFilesDir() + "movies_rating.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis);
 
-            //tässä yritetään lukea tiedosto "movies_rating.txt" jossa on arvosteluolioita ja laittaa oliot arraylistiin
-            //Onko seuraavat 3 riviä oikein? Mitä tulisi muuttaa?
-
-            Object line;
-            while((line = ois.readObject()) != null){
-                arrayList.add((Movie_rating) ois.readObject());
-            }
-
-            //arrayList = (ArrayList<Movie_rating>) ois.readObject();
-            ois.close();
-            System.out.println("Luettu");
-
-            System.out.println(arrayList.get(0).name);
-
-            Collections.sort(arrayList);
-
-            for(Movie_rating i : arrayList){
-                System.out.println(i.toString());
-            }
-
-            listView(arrayList);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void listView(ArrayList<Movie_rating> arrayList){
         adapter = new ArrayAdapter<Movie_rating>(this, android.R.layout.simple_spinner_item, arrayList);
