@@ -28,9 +28,10 @@ public class Profile extends OptionMenuActivity{
     private Toolbar toolbar;
     ListView listView;
     Movie_rating movie_rating;
-    ArrayList<Movie_rating> arrayList = new ArrayList<>();
+    ArrayList<Movie_rating> arrayList_toFile = new ArrayList<>();
+    ArrayList<Movie_rating> arrayList_fromFile = new ArrayList<>();
     ArrayAdapter<Movie_rating> adapter = null;
-    Context context = Profile.this;
+    //Context context = Profile.this;
 
 
     @Override
@@ -40,18 +41,17 @@ public class Profile extends OptionMenuActivity{
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         listView = (ListView) findViewById(R.id.listview);
         setSupportActionBar(toolbar);
-        ArrayList<Movie_rating> arrayList = new ArrayList<>();
 
-        FileManager FM = new FileManager(movie_rating);
-        arrayList = FM.readFile(arrayList);
-        listView(arrayList);
+        FileManager FM = new FileManager();
+        arrayList_fromFile = FM.readFile(arrayList_toFile);
+        listView(arrayList_fromFile);
 
     }
 
 
 
-    public void listView(ArrayList<Movie_rating> arrayList){
-        adapter = new ArrayAdapter<Movie_rating>(this, android.R.layout.simple_spinner_item, arrayList);
+    public void listView(ArrayList<Movie_rating> arrayList_fromFile){
+        adapter = new ArrayAdapter<Movie_rating>(this, android.R.layout.simple_spinner_item, arrayList_fromFile);
         listView.setAdapter(adapter);
 
     }

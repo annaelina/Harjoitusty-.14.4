@@ -18,7 +18,7 @@ import java.io.ObjectOutputStream;
 public class writereview extends AppCompatActivity {
 
     String name, comment;
-    Context context = writereview.this;
+    //Context context = writereview.this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,7 @@ public class writereview extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                float rating = (float) ratingBar.getRating();
+                Float rating = (Float) ratingBar.getRating();
                 //System.out.println(rating);
                 Movie_rating movie_rating = new Movie_rating(new Float(rating), name, comment);
                 //writeFile(movie_rating);

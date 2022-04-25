@@ -19,15 +19,20 @@ import java.util.Collections;
 
 public class FileManager {
 
-    Movie_rating movie_rating = null;
+    Movie_rating movie_rating;
 
     ArrayList<Movie_rating> ratedMovies = new ArrayList<>();
-    ArrayList<Movie_rating> arrayList = new ArrayList<>();
+    ArrayList<Movie_rating> arrayList_read = new ArrayList<>();
+    ArrayList<Movie_rating> arrayList_write = new ArrayList<>();
 
 
     /*movie_rating = (Movie_rating) getIntent().getSerializableExtra("key");
     writeFile(movie_rating);
     readFile();*/
+
+    public FileManager(){
+
+    }
 
     public FileManager(Movie_rating movie_rating){
         this.movie_rating = movie_rating;
@@ -38,8 +43,8 @@ public class FileManager {
         try{
             File file = new File("movie_rating.txt");
             if(file.exists()){
-                arrayList = readFile(arrayList);
-                for ( Movie_rating mov: arrayList){
+                arrayList_write = readFile(arrayList_read);
+                for (Movie_rating mov: arrayList_write){
                     ratedMovies.add(mov);
                 }
             }
@@ -62,7 +67,7 @@ public class FileManager {
 
     }
 
-    public ArrayList<Movie_rating> readFile(ArrayList<Movie_rating> arrayList){
+    public ArrayList<Movie_rating> readFile(ArrayList<Movie_rating> arrayList_read){
         try{
             FileInputStream fis = new FileInputStream("movies_rating.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -70,12 +75,13 @@ public class FileManager {
             //tässä yritetään lukea tiedosto "movies_rating.txt" jossa on arvosteluolioita ja laittaa oliot arraylistiin
             //Onko seuraavat 3 riviä oikein? Mitä tulisi muuttaa?
 
-            arrayList = (ArrayList<Movie_rating>) ois.readObject();
+            arrayList_read = (ArrayList<Movie_rating>) ois.readObject();
 
             //arrayList = (ArrayList<Movie_rating>) ois.readObject();
             ois.close();
             System.out.println("Luettu");
 
+            /*
             if ( arrayList.size() > 0 ) {
                 System.out.println(arrayList.get(0).name);
             }
@@ -84,7 +90,7 @@ public class FileManager {
 
             for(Movie_rating i : arrayList){
                 System.out.println(i.toString());
-            }
+            } */
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -94,7 +100,7 @@ public class FileManager {
             e.printStackTrace();
         }
 
-        return arrayList;
+        return arrayList_read;
 
     }
 }

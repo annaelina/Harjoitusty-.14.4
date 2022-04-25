@@ -35,11 +35,14 @@ public class Find_review extends OptionMenuActivity {
     private Toolbar toolbar;
     Context context = Find_review.this;
     ListView listView;
-    ArrayList<Movies2> arrayList = new ArrayList<>();
-    ArrayAdapter<Movies2> adapter = null;
-    ArrayList<Movies2> arrayList2;
     public String name;
     Button button3;
+
+    ArrayList<Movies2> arrayList = new ArrayList<>();
+    ArrayList<Movies2> arrayList2 = null;
+    ArrayAdapter<Movies2> adapter = null;
+
+
     //File file = new File(context.getFilesDir() + "movies.txt");
    
     //ArrayList<String> userData = new ArrayList<String>();
@@ -113,10 +116,8 @@ public class Find_review extends OptionMenuActivity {
         try{
             FileInputStream fis = new FileInputStream(context.getFilesDir() + "movies.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            ArrayList<Movies2> arrayList2 = (ArrayList<Movies2>) ois.readObject();
+            arrayList2 = (ArrayList<Movies2>) ois.readObject();
             ois.close();
-            
-            return arrayList2;
             
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -125,7 +126,7 @@ public class Find_review extends OptionMenuActivity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+        return arrayList2;
     }
 
     public void listView(ArrayList<Movies2> arrayList2){
