@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -62,13 +63,30 @@ public class MainActivity extends OptionMenuActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-
     }
 
+    public void searchMovie(){
+        SearchView searchView = (SearchView) findViewById(R.id.searchMovie);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                ArrayList<Movies> filteredMovies = new ArrayList<>();
+                for (Movies movies: arrayList){
+                    if (movies.getName().toLowerCase().contains(s.toLowerCase())){
+                        filteredMovies.add(movies);
+                    }
+                }
+                Adapter adapter = new Adapter(filteredMovies, MainActivity.this);
+                listView.setAdapter(adapter);
 
-    public void searchMovie(View v){
+                return false;
+            }
+        });
 
     }
     public void listView(){

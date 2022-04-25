@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,11 +40,11 @@ public class writereview extends AppCompatActivity {
                 Movie_rating movie_rating = new Movie_rating(new Float(rating), name, comment);
                 //writeFile(movie_rating);
 
-                FileManager FM = new FileManager(movie_rating);
-                FM.writeFile();
+                //FileManager FM = new FileManager(movie_rating);
+                //FM.writeFile();
 
                 Intent intent = new Intent(writereview.this, Profile.class);
-                //intent.putExtra("key", movie_rating);
+                intent.putExtra("key", movie_rating);
                 startActivity(intent);
 
             }
