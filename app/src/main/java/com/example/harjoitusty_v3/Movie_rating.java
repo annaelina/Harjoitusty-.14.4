@@ -16,7 +16,7 @@ public class Movie_rating implements Serializable, Comparable<Movie_rating> {
 
     @Override
     public String toString(){
-        return this.name;
+        return name;
     }
 
     @Override

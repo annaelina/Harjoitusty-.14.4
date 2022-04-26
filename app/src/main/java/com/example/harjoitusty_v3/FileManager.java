@@ -26,7 +26,7 @@ public class FileManager {
     Context context;
 
 
-    ArrayList<Movie_rating> ratedMovies = new ArrayList<>();
+    //ArrayList<Movie_rating> ratedMovies = new ArrayList<>();
     ArrayList<Movie_rating> arrayList_read = null;
     ArrayList<Movie_rating> arrayList_write = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public class FileManager {
 
             arrayList_write.add(movie_rating);
 
-            FileOutputStream fos = new FileOutputStream(context.getFilesDir()+ "movie_rating.txt");
+            FileOutputStream fos = new FileOutputStream(context.getFilesDir() + "movie_rating.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(arrayList_write);
             oos.close();
@@ -73,13 +73,7 @@ public class FileManager {
         try{
             FileInputStream fis = new FileInputStream(context.getFilesDir()+ "movies_rating.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
-
-            //tässä yritetään lukea tiedosto "movies_rating.txt" jossa on arvosteluolioita ja laittaa oliot arraylistiin
-            //Onko seuraavat 3 riviä oikein? Mitä tulisi muuttaa?
-
             arrayList_read = (ArrayList<Movie_rating>) ois.readObject();
-
-            //arrayList = (ArrayList<Movie_rating>) ois.readObject();
             ois.close();
             System.out.println("Luettu");
             ///data/data/com.example.harjoitusty_v3/filesmovies_rating.txt

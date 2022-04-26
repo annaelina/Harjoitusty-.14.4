@@ -36,9 +36,8 @@ public class writereview extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Float rating = (Float) ratingBar.getRating();
-                //System.out.println(rating);
+
                 Movie_rating movie_rating = new Movie_rating(new Float(rating), name, comment);
-                //writeFile(movie_rating);
 
                 //FileManager FM = new FileManager(movie_rating);
                 //FM.writeFile();
