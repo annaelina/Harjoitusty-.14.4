@@ -44,6 +44,7 @@ public class MainActivity extends OptionMenuActivity {
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         //getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+        //getApplicationContext().openFileOutput();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);

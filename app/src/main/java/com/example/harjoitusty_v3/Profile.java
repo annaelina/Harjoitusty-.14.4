@@ -45,16 +45,13 @@ public class Profile extends OptionMenuActivity{
         setSupportActionBar(toolbar);
 
         Movie_rating movie_rating = (Movie_rating) getIntent().getSerializableExtra("key");
-        FileManager FM = new FileManager(movie_rating, Profile.this);
+        FileManager FM = new FileManager(movie_rating, getApplicationContext());
         FM.writeFile();
-        arrayList_fromFile = FM.readFile();
-        listView(arrayList_fromFile);
-
+        arrayList_fromFile = FM.readFile(arrayList_fromFile);
         for(Movie_rating mov : arrayList_fromFile){
             System.out.println(mov.name);
         }
-
-
+        listView(arrayList_fromFile);
     }
 
 
