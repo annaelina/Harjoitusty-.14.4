@@ -32,6 +32,10 @@ public class FileManager {
     ArrayList<Movie_rating> arrayList_read = null;
     ArrayList<Movie_rating> arrayList_write = new ArrayList<>();
 
+    public FileManager(Context context){
+        this.context = context;
+    }
+
 
 
     public FileManager(Movie_rating movie_rating, Context context){
@@ -46,9 +50,6 @@ public class FileManager {
 
             if(file.exists()){
                 arrayList_write = readFile(arrayList_read);
-                for (Movie_rating mov: arrayList_write){
-                    ratedMovies.add(mov);
-                }
             }
 
             arrayList_write.add(movie_rating);

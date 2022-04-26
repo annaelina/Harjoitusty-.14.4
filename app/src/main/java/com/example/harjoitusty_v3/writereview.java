@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +20,7 @@ import java.io.ObjectOutputStream;
 public class writereview extends AppCompatActivity {
 
     String name, comment;
+    TextView txt;
     //Context context = writereview.this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,11 @@ public class writereview extends AppCompatActivity {
         setContentView(R.layout.activity_writereview);
 
         //elokuvan nimen hakeminen
+        //Gets the name of the movie
         name = getIntent().getStringExtra("key");
-        System.out.println(name);
+        TextView txt = (TextView) findViewById(R.id.textView2);
+        txt.setText(name);
+
 
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         Button submit_button = (Button) findViewById(R.id.submit_button);
@@ -44,6 +49,7 @@ public class writereview extends AppCompatActivity {
 
                 Intent intent = new Intent(writereview.this, Profile.class);
                 intent.putExtra("key", movie_rating);
+                intent.putExtra("key1", (String) "kolme");
                 startActivity(intent);
 
             }

@@ -1,5 +1,7 @@
 package com.example.harjoitusty_v3;
 
+import android.widget.ArrayAdapter;
+
 import java.io.Serializable;
 
 public class Movie_rating implements Serializable, Comparable<Movie_rating> {
@@ -14,10 +16,22 @@ public class Movie_rating implements Serializable, Comparable<Movie_rating> {
         this.rating = rating;
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public Float getRating(){
+        return  rating;
+    }
+
     @Override
     public String toString(){
         return name;
     }
+    public float getFloat(){
+        return rating;
+    }
+
 
     @Override
     public int compareTo(Movie_rating movie_rating) {

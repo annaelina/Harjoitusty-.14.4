@@ -7,38 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-            <include
-                layout="@layout/toolbar" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar" />
 
-            <SearchView
-                android:id="@+id/searchMovie"
-                android:layout_width="357dp"
-                android:layout_height="84dp"
-                android:iconifiedByDefault="false"
-                android:queryHint="Etsi elokuvaa"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.444"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.182" />
 
-            <EditText
-                android:id="@+id/lookMovie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:text="Look For Movie"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.149"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.33" />
+    <SearchView
+        android:id="@+id/searchMovie"
+        android:layout_width="221dp"
+        android:layout_height="58dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Etsi elokuvaa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.306" />
 
-            <TextView
+    <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,70 +39,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.022" />
 
-            <Button
-                android:id="@+id/button"
-                style="@style/Widget.AppCompat.Button.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Search"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.901"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.499" />
-
-            <EditText
-                android:id="@+id/editTextDate"
-                android:layout_width="195dp"
-                android:layout_height="48dp"
-                android:ems="10"
-                android:inputType="date"
-                android:text="Date"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.138"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.423" />
-
-            <EditText
-                android:id="@+id/editTextTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time"
-                android:minHeight="48dp"
-                android:text="Time"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.149"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.532" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@android:drawable/btn_star_big_on"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.907"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.35"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <ListView
-                android:id="@+id/listview"
-                android:layout_width="351dp"
-                android:layout_height="238dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.966"
-                tools:ignore="InvalidId" />
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="357dp"
+        android:layout_height="394dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.966"
+        tools:ignore="InvalidId" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

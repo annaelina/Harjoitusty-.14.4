@@ -1,16 +1,21 @@
 package com.example.harjoitusty_v3;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import org.w3c.dom.Document;
@@ -23,6 +28,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -36,6 +42,9 @@ public class MainActivity extends OptionMenuActivity {
     Movies schedule = null;
     ArrayList<Movies> arrayList = new ArrayList<>();
     ListView listView;
+    CalendarView calendarView;
+    int day = 0;
+
 
 
     @Override
@@ -52,6 +61,7 @@ public class MainActivity extends OptionMenuActivity {
         button1 = (Button) findViewById(R.id.button);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         listView = (ListView) findViewById(R.id.listview);
+        //calendarView = (CalendarView) findViewById(R.id.calendarView);
         setSupportActionBar(toolbar);
 
 
@@ -60,6 +70,8 @@ public class MainActivity extends OptionMenuActivity {
 
 
         readXML();
+        //calendarView();
+        searchMovie();
 ;
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -85,19 +97,40 @@ public class MainActivity extends OptionMenuActivity {
                 Adapter adapter = new Adapter(filteredMovies, MainActivity.this);
                 listView.setAdapter(adapter);
 
+
+
                 return false;
             }
         });
 
+
     }
+
+    /*public void calendarView(){
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                String date = i2+"-"+i1+1+"-"+i;
+
+                ArrayList<Movies> filteredMovies1 = new ArrayList<>();
+                for (Movies movies: arrayList){
+                    if (movies.getDate() == date){
+                        filteredMovies1.add(movies);
+                    }
+                }
+                Adapter adapter = new Adapter(filteredMovies1, MainActivity.this);
+                listView.setAdapter(adapter);
+            }
+        });
+    }*/
+
     public void listView(){
 
         Adapter adapter = new Adapter(arrayList, MainActivity.this);
         listView.setAdapter(adapter);
     }
-    public void rankMovies(View v){
 
-    }
 
 
     /*Bring arraylist from "Read xml" class*/
