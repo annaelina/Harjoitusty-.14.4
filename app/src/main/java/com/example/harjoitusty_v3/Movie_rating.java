@@ -30,7 +30,7 @@ public class Movie_rating implements Serializable {
         return rating;
     }*/
 
-
+    //Puts rated movies in order.
     //@Override
     /*public int compareTo(Movie_rating movie_rating) {
         if (rating.floatValue() < movie_rating.rating.floatValue()) {

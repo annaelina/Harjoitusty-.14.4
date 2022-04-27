@@ -8,7 +8,6 @@ public class Movies {
     String date;
 
     public Movies(){
-
     }
 
     public Movies(String name, int id, String date){
@@ -16,6 +15,7 @@ public class Movies {
         this.id = id;
         this.date = date;
     }
+
     public String getName(){
         return name;
     }

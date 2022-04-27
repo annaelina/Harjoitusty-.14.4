@@ -35,6 +35,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+//Class/activity to search movies.
 public class MainActivity extends OptionMenuActivity {
 
     Button button1, button2;
@@ -45,16 +46,10 @@ public class MainActivity extends OptionMenuActivity {
     CalendarView calendarView;
     int day = 0;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         setContentView(R.layout.activity_main);
-        //getApplicationContext().openFileOutput();
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -63,22 +58,12 @@ public class MainActivity extends OptionMenuActivity {
         listView = (ListView) findViewById(R.id.listview);
         setSupportActionBar(toolbar);
 
-
-
-
-
-
         readXML();
         searchMovie();
-;
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
     }
 
     public void searchMovie(){
         SearchView searchView = (SearchView) findViewById(R.id.searchMovie);
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -95,25 +80,19 @@ public class MainActivity extends OptionMenuActivity {
                 Adapter adapter = new Adapter(filteredMovies, MainActivity.this);
                 listView.setAdapter(adapter);
 
-
-
                 return false;
             }
         });
-
-
     }
 
 
     public void listView(){
-
         Adapter adapter = new Adapter(arrayList, MainActivity.this);
         listView.setAdapter(adapter);
     }
 
 
-
-    /*Bring arraylist from "Read xml" class*/
+    //Brings arraylist from "Read xml" class.
     public void readXML(){
 
         try {
@@ -130,20 +109,10 @@ public class MainActivity extends OptionMenuActivity {
                     String name = element.getElementsByTagName("Title").item(0).getTextContent();
                     int id = Integer.valueOf(element.getElementsByTagName("ID").item(0).getTextContent());
                     String starttame = element.getElementsByTagName("dttmShowStart").item(0).getTextContent();
-                    /*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                    try {
-                        Date date = format.parse(starttame);
-                        System.out.println(date);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }*/
-
                     arrayList.add(new Movies(name, id, starttame));
                 }
-
                 listView();
             }
-
 
         } catch (IOException e) {
             e.printStackTrace();

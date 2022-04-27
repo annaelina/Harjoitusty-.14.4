@@ -26,9 +26,9 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="141dp"
+        android:layout_width="164dp"
         android:layout_height="45dp"
-        android:text="Finnkino"
+        android:text="FINNKINO"
         android:textColor="#FFC107"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -36,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.016" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/emailBox"

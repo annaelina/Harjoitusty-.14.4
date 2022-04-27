@@ -25,34 +25,21 @@ public class FileManager {
 
     Movie_rating movie_rating;
     Context context;
-    String file_name;
-
 
     ArrayList<Movie_rating> ratedMovies = new ArrayList<>();
     ArrayList<Movie_rating> arrayList_read = new ArrayList<>();
     ArrayList<Movie_rating> arrayList_write;
 
-
-    /*public FileManager(Context context){
-        this.context = context;
-    }*/
-
-
-
     public FileManager(Movie_rating movie_rating, Context context){
         this.movie_rating = movie_rating;
         this.context = context;
-
-
     }
 
     public void writeFile(){
         try{
             File file = new File(context.getFilesDir()+ "movie_rating.txt");
 
-
             if(file.exists()){
-
                 ArrayList<Movie_rating> arrayList_write = readFile();
                 System.out.println(arrayList_write.get(0));
                 arrayList_write.add(movie_rating);
@@ -72,14 +59,11 @@ public class FileManager {
                 System.out.println(arrayList_write.size());
             }
 
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public ArrayList<Movie_rating> readFile(){
@@ -89,9 +73,7 @@ public class FileManager {
             arrayList_read = ((ArrayList<Movie_rating>) ois.readObject());
             ois.close();
             System.out.println("Luettu");
-
             return arrayList_read;
-
 
             /*
             if ( arrayList.size() > 0 ) {
@@ -111,8 +93,6 @@ public class FileManager {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return null;
-
     }
 }

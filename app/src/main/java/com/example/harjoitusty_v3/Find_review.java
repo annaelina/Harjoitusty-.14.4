@@ -31,6 +31,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+
+//Class/activity to find a movie that user wants to give review.
+
 public class Find_review extends OptionMenuActivity {
 
     private Toolbar toolbar;
@@ -43,7 +46,6 @@ public class Find_review extends OptionMenuActivity {
     ArrayList<Movies2> arrayList2 = null;
     ArrayAdapter<Movies2> adapter = null;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,17 +56,14 @@ public class Find_review extends OptionMenuActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-
-
+        //Lists movies to choose.
         writetoFile();
         this.arrayList2 = readFile();
         listView(this.arrayList2);
         searchMovie();
-
     }
 
     public void writetoFile() {
@@ -76,10 +75,6 @@ public class Find_review extends OptionMenuActivity {
             doc.getDocumentElement().normalize();
             NodeList list = doc.getDocumentElement().getElementsByTagName("Event");
 
-            //tässä yritetään lukea Finnkino Events XML, laittaa tiedot Arraylistaan ja lisätä lista tiedostoon "movies.txt"
-            //miten sovelluksen seuraavalla avauskerralla päivittää tiedostoa niin, että siellä olevat elokuvat säilyvät
-            // --> mutta jos on tullut uusia elokuvia ne lisätään
-
             FileOutputStream fos = new FileOutputStream( context.getFilesDir() + "movies.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
@@ -89,20 +84,13 @@ public class Find_review extends OptionMenuActivity {
                     Element element = (Element) node;
                     String name = element.getElementsByTagName("Title").item(0).getTextContent();
                     int id = Integer.valueOf(element.getElementsByTagName("ID").item(0).getTextContent());
-                    //for loopilla, hashmap?
-
 
                     arrayList.add(new Movies2(name, id));
-
-
                 }
-
             }
             oos.writeObject(arrayList);
             oos.close();
 
-
-                
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -130,10 +118,6 @@ public class Find_review extends OptionMenuActivity {
                     }
                 }
                 listView(filteredMovies);
-                //adapter = new ArrayAdapter<Movies2>(this, android.R.layout.simple_list_item_activated_1, filteredMovies);
-                //listView.setAdapter(adapter);
-
-
 
                 return false;
             }
@@ -167,16 +151,13 @@ public class Find_review extends OptionMenuActivity {
                 Movies2 selectedmovie = (Movies2) listView.getItemAtPosition(i);
                 String name = selectedmovie.getName();
                 giveReview(name);
-
             }
-
         });
-
-
     }
 
     public void giveReview(String name){
         button3.setOnClickListener(new View.OnClickListener() {
+            //Sends given review to the next activity.
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Find_review.this, writereview.class);

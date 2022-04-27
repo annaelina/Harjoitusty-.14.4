@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class login extends OptionMenuActivity{
 
-
     TextView test;
     EditText password_editText, email_editText;
     Button signIn, signUp, anonymos;
@@ -35,7 +34,6 @@ public class login extends OptionMenuActivity{
     ArrayList<Users> arrayList_read = null;
     ArrayList<Users> arrayList_write = new ArrayList<>();
 
-
     private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,37 +42,28 @@ public class login extends OptionMenuActivity{
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         email_editText = (EditText) findViewById(R.id.emailBox);
         password_editText = (EditText) findViewById(R.id.passwordBox);
         signIn = (Button) findViewById(R.id.btn_signIn);
         signUp = (Button) findViewById(R.id.btn_signUp);
         anonymos = (Button) findViewById(R.id.btn_anoUser);
-
     }
 
     public void getInformation(){
         email = email_editText.getText().toString().trim();
         password = password_editText.getText().toString().trim();
-
-
         //usersList.add(new Users(email, password));
-
         System.out.println(email);
     }
 
     public  void singIn(View v){
         signIn.setOnClickListener(new View.OnClickListener() {
-
-            
             @Override
             public void onClick(View view) {
                 getInformation();
-
                 startActivity(new Intent(login.this, MainActivity.class));
             }
         });
-
     }
 
     public  void singUp(View v){
@@ -86,7 +75,6 @@ public class login extends OptionMenuActivity{
                 startActivity(new Intent(login.this, MainActivity.class));
             }
         });
-
     }
 
     public  void anonymos(View v){
@@ -96,7 +84,5 @@ public class login extends OptionMenuActivity{
                 startActivity(new Intent(login.this, MainActivity.class));
             }
         });
-
     }
-
 }

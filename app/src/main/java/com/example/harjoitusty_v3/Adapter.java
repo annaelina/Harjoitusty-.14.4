@@ -17,8 +17,6 @@ public class Adapter extends BaseAdapter {
     public Adapter(ArrayList<Movies> arrayList, Context context){
         this.arrayList = arrayList;
         this.constext = context;
-
-
     }
 
     @Override
