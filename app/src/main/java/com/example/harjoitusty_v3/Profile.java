@@ -30,9 +30,10 @@ public class Profile extends OptionMenuActivity{
     private Toolbar toolbar;
     ListView listView;
     //rrayList<Movie_rating> arrayList_toFile = new ArrayList<>();
-    ArrayList<Movie_rating> arrayList_fromFile = null;
+    ArrayList<Movie_rating> arrayList_fromFile = new ArrayList<>();
     ArrayAdapter<Movie_rating> adapter = null;
     String a = null;
+    Movie_rating movie_rating = null;
 
 
 
@@ -45,34 +46,36 @@ public class Profile extends OptionMenuActivity{
         setSupportActionBar(toolbar);
 
 
+        FileManager FM = new FileManager((Movie_rating) getIntent().getSerializableExtra("key"), getApplicationContext());
+        FM.writeFile();
+        arrayList_fromFile = FM.readFile();
+        //Collections.sort(arrayList_fromFile);
+        listView(arrayList_fromFile);
 
 
 
-
-        a = getIntent().getStringExtra("key1");
+        /*a = (String) getIntent().getStringExtra("key1");
         if ( a == null){
-            FileManager FM = new FileManager(getApplicationContext());
+            FileManager FM = new FileManager(null, getApplicationContext());
             arrayList_fromFile = FM.readFile(arrayList_fromFile);
-            if ( arrayList_fromFile.size()>0){
+            if ( arrayList_fromFile != null){
                 listView(arrayList_fromFile);
             }
         }
         else {
             giveReview();
-        }
-
-
+        }*/
 
     }
 
-    public void giveReview(){
-        Movie_rating movie_rating = (Movie_rating) getIntent().getSerializableExtra("key");
-        FileManager FM = new FileManager(movie_rating, getApplicationContext());
+    /*public void giveReview(){
+        //movie_rating = (Movie_rating) getIntent().getSerializableExtra("key");
+        FileManager FM = new FileManager((Movie_rating) getIntent().getSerializableExtra("key"), getApplicationContext());
         FM.writeFile();
         arrayList_fromFile = FM.readFile(arrayList_fromFile);
         //Collections.sort(arrayList_fromFile);
         listView(arrayList_fromFile);
-    }
+    }*/
 
 
 

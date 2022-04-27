@@ -19,7 +19,7 @@ import java.io.ObjectOutputStream;
 
 public class writereview extends AppCompatActivity {
 
-    String name, comment;
+    String name;
     TextView txt;
     //Context context = writereview.this;
     @Override
@@ -40,24 +40,18 @@ public class writereview extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Float rating = (Float) ratingBar.getRating();
+                //Float rating = (Float) ratingBar.getRating();
 
-                Movie_rating movie_rating = new Movie_rating(new Float(rating), name, comment);
+                Movie_rating movie_rating = new Movie_rating(new Float(ratingBar.getRating()), name);
 
                 //FileManager FM = new FileManager(movie_rating);
                 //FM.writeFile();
 
                 Intent intent = new Intent(writereview.this, Profile.class);
                 intent.putExtra("key", movie_rating);
-                intent.putExtra("key1", (String) "kolme");
                 startActivity(intent);
 
             }
         });
-
     }
-
-
-
-
 }

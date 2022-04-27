@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -43,10 +44,6 @@ public class Find_review extends OptionMenuActivity {
     ArrayAdapter<Movies2> adapter = null;
 
 
-    //File file = new File(context.getFilesDir() + "movies.txt");
-   
-    //ArrayList<String> userData = new ArrayList<String>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +63,7 @@ public class Find_review extends OptionMenuActivity {
         writetoFile();
         this.arrayList2 = readFile();
         listView(this.arrayList2);
+        searchMovie();
 
     }
 
@@ -102,6 +100,8 @@ public class Find_review extends OptionMenuActivity {
             }
             oos.writeObject(arrayList);
             oos.close();
+
+
                 
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,6 +110,34 @@ public class Find_review extends OptionMenuActivity {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
+    }
+
+    public void searchMovie() {
+        SearchView searchView = (SearchView) findViewById(R.id.searchMovie);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                ArrayList<Movies2> filteredMovies = new ArrayList<>();
+                for (Movies2 movies : arrayList2) {
+                    if (movies.getName().toLowerCase().contains(s.toLowerCase())) {
+                        filteredMovies.add(movies);
+                    }
+                }
+                listView(filteredMovies);
+                //adapter = new ArrayAdapter<Movies2>(this, android.R.layout.simple_list_item_activated_1, filteredMovies);
+                //listView.setAdapter(adapter);
+
+
+
+                return false;
+            }
+        });
     }
 
     public ArrayList<Movies2> readFile(){
@@ -130,7 +158,7 @@ public class Find_review extends OptionMenuActivity {
     }
 
     public void listView(ArrayList<Movies2> arrayList2){
-        adapter = new ArrayAdapter<Movies2>(this, android.R.layout.simple_list_item_activated_1, arrayList2);
+        adapter = new ArrayAdapter<Movies2>(this, android.R.layout.simple_spinner_item, arrayList2);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

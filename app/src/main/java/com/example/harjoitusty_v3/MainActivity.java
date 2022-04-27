@@ -51,7 +51,7 @@ public class MainActivity extends OptionMenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //getSupportActionBar().hide();
+
         setContentView(R.layout.activity_main);
         //getApplicationContext().openFileOutput();
 
@@ -61,7 +61,6 @@ public class MainActivity extends OptionMenuActivity {
         button1 = (Button) findViewById(R.id.button);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         listView = (ListView) findViewById(R.id.listview);
-        //calendarView = (CalendarView) findViewById(R.id.calendarView);
         setSupportActionBar(toolbar);
 
 
@@ -70,7 +69,6 @@ public class MainActivity extends OptionMenuActivity {
 
 
         readXML();
-        //calendarView();
         searchMovie();
 ;
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -106,24 +104,6 @@ public class MainActivity extends OptionMenuActivity {
 
     }
 
-    /*public void calendarView(){
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                String date = i2+"-"+i1+1+"-"+i;
-
-                ArrayList<Movies> filteredMovies1 = new ArrayList<>();
-                for (Movies movies: arrayList){
-                    if (movies.getDate() == date){
-                        filteredMovies1.add(movies);
-                    }
-                }
-                Adapter adapter = new Adapter(filteredMovies1, MainActivity.this);
-                listView.setAdapter(adapter);
-            }
-        });
-    }*/
 
     public void listView(){
 

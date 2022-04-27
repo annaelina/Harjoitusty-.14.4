@@ -29,12 +29,13 @@ public class FileManager {
 
 
     ArrayList<Movie_rating> ratedMovies = new ArrayList<>();
-    ArrayList<Movie_rating> arrayList_read = null;
-    ArrayList<Movie_rating> arrayList_write = new ArrayList<>();
+    ArrayList<Movie_rating> arrayList_read = new ArrayList<>();
+    ArrayList<Movie_rating> arrayList_write;
 
-    public FileManager(Context context){
+
+    /*public FileManager(Context context){
         this.context = context;
-    }
+    }*/
 
 
 
@@ -42,24 +43,35 @@ public class FileManager {
         this.movie_rating = movie_rating;
         this.context = context;
 
+
     }
 
     public void writeFile(){
         try{
             File file = new File(context.getFilesDir()+ "movie_rating.txt");
 
+
             if(file.exists()){
-                arrayList_write = readFile(arrayList_read);
+
+                ArrayList<Movie_rating> arrayList_write = readFile();
+                System.out.println(arrayList_write.get(0));
+                arrayList_write.add(movie_rating);
+                FileOutputStream fos = context.openFileOutput("movie_rating.txt", Context.MODE_PRIVATE);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(arrayList_write);
+                oos.close();
+                System.out.println(arrayList_write.size());
+            }
+            else {
+                ArrayList<Movie_rating> arrayList_write = new ArrayList<>();
+                arrayList_write.add(movie_rating);
+                FileOutputStream fos = context.openFileOutput("movie_rating.txt", Context.MODE_PRIVATE);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(arrayList_write);
+                oos.close();
+                System.out.println(arrayList_write.size());
             }
 
-            arrayList_write.add(movie_rating);
-
-            //FileOutputStream fos = new FileOutputStream(context.getFilesDir() + "movie_rating.txt");
-            FileOutputStream fos = context.openFileOutput("movie_rating.txt", Context.MODE_PRIVATE);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(arrayList_write);
-            oos.close();
-            System.out.println(arrayList_write.size());
 
 
         } catch (FileNotFoundException e) {
@@ -70,15 +82,15 @@ public class FileManager {
 
     }
 
-    public ArrayList<Movie_rating> readFile(ArrayList arrayList_read){
+    public ArrayList<Movie_rating> readFile(){
         try{
-            //FileInputStream fis = new FileInputStream(context.getFilesDir()+ "movies_rating.txt");;
             FileInputStream fis = context.openFileInput("movie_rating.txt");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            arrayList_read= ((ArrayList<Movie_rating>) ois.readObject());
-            //arrayList_read = (ArrayList<Movie_rating>) ois.readObject();
+            arrayList_read = ((ArrayList<Movie_rating>) ois.readObject());
             ois.close();
             System.out.println("Luettu");
+
+            return arrayList_read;
 
 
             /*
@@ -100,7 +112,7 @@ public class FileManager {
             e.printStackTrace();
         }
 
-        return arrayList_read;
+        return null;
 
     }
 }
