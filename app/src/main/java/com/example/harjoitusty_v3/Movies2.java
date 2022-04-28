@@ -16,9 +16,6 @@ public class Movies2 implements Serializable {
         return name;
     }
 
-    public int getID(){
-        return id;
-    }
 
     @Override
     public String toString() {

@@ -1,5 +1,7 @@
 package com.example.harjoitusty_v3;
 
+//source: https://www.youtube.com/watch?v=M73Vec1oieM
+
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
@@ -38,13 +40,10 @@ import javax.xml.parsers.ParserConfigurationException;
 //Class/activity to search movies.
 public class MainActivity extends OptionMenuActivity {
 
-    Button button1, button2;
     private Toolbar toolbar;
     Movies schedule = null;
     ArrayList<Movies> arrayList = new ArrayList<>();
     ListView listView;
-    CalendarView calendarView;
-    int day = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,6 @@ public class MainActivity extends OptionMenuActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        button1 = (Button) findViewById(R.id.button);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         listView = (ListView) findViewById(R.id.listview);
         setSupportActionBar(toolbar);

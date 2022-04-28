@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+//lähde: https://www.youtube.com/watch?v=E6vE8fqQPTE
+
 public class Adapter2 extends BaseAdapter {
 
 
@@ -38,12 +40,12 @@ public class Adapter2 extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         if (view == null){
-            view = LayoutInflater.from(constext).inflate(R.layout.listview_item, viewGroup, false);
+            view = LayoutInflater.from(constext).inflate(R.layout.listview_item2, viewGroup, false);
         }
         Movie_rating movie = (Movie_rating) getItem(i);
 
         TextView name = (TextView) view.findViewById(R.id.name);
-        TextView raiting = (TextView) view.findViewById(R.id.date);
+        TextView raiting = (TextView) view.findViewById(R.id.rating);
 
         name.setText(movie.getName());
         raiting.setText(movie.getRating().toString());

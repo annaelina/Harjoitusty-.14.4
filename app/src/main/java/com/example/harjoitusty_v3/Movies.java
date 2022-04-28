@@ -20,10 +20,6 @@ public class Movies {
         return name;
     }
 
-    public int getID(){
-        return id;
-    }
-
     public String getDate(){
         return  date;
     }

@@ -31,7 +31,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-
+//Source https://www.youtube.com/watch?v=M73Vec1oieM
 //Class/activity to find a movie that user wants to give review.
 
 public class Find_review extends OptionMenuActivity {

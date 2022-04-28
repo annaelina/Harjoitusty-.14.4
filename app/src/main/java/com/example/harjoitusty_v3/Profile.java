@@ -30,10 +30,9 @@ public class Profile extends OptionMenuActivity{
 
     private Toolbar toolbar;
     ListView listView;
-    ArrayList<Movie_rating> arrayList_fromFile = new ArrayList<>();
-    ArrayAdapter<Movie_rating> adapter = null;
-    String a = null;
+
     Movie_rating movie_rating = null;
+
 
 
     @Override
@@ -44,39 +43,22 @@ public class Profile extends OptionMenuActivity{
         listView = (ListView) findViewById(R.id.listview);
         setSupportActionBar(toolbar);
 
-        //Lists given reviews.
-        //FileManager FM = new FileManager((Movie_rating) getIntent().getSerializableExtra("key"), getApplicationContext());
-        //FM.writeFile();
-        //arrayList_fromFile = FM.readFile();
-        //Collections.sort(arrayList_fromFile);
-        //listView(arrayList_fromFile);
 
-        //Checks if user came from Writereview activity or somewhere else and lists given reviews.
-        a = (String) getIntent().getStringExtra("key1");
-        if ( a == null){
-            FileManager FM = new FileManager(null, getApplicationContext());
-            arrayList_fromFile = FM.readFile();
-            if ( arrayList_fromFile != null){
-                listView(arrayList_fromFile);
-            }
-        }
-        else {
-            giveReview();
-        }
+        giveReview();
     }
 
     //Lists given reviews.
     public void giveReview(){
-        movie_rating = (Movie_rating) getIntent().getSerializableExtra("key");
         FileManager FM = new FileManager((Movie_rating) getIntent().getSerializableExtra("key"), getApplicationContext());
         FM.writeFile();
-        arrayList_fromFile = FM.readFile();
-        //Collections.sort();
+        ArrayList<Movie_rating> arrayList_fromFile = FM.readFile();
+        System.out.println(arrayList_fromFile.size());
+        Collections.sort(arrayList_fromFile);
         listView(arrayList_fromFile);
     }
 
     public void listView(ArrayList<Movie_rating> arrayList_fromFile){
-        adapter = new ArrayAdapter<Movie_rating>(this, android.R.layout.simple_spinner_item, arrayList_fromFile);
+        Adapter2 adapter = new Adapter2(arrayList_fromFile, Profile.this);
         listView.setAdapter(adapter);
     }
 

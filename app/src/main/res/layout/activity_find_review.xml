@@ -7,7 +7,6 @@
     tools:context=".Find_review">
 
     <include
-        android:id="@+id/include2"
         layout="@layout/toolbar" />
 
 

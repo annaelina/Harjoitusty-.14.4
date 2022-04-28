@@ -1,5 +1,7 @@
 package com.example.harjoitusty_v3;
 
+//Source https://www.youtube.com/watch?v=G9yi92qdxBg
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -20,9 +22,6 @@ public class OptionMenuActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
-            case R.id.Profile:
-                seeProfile();
-                return true;
             case R.id.Mainpage:
                 seeMainpage();
                 return true;
@@ -35,10 +34,6 @@ public class OptionMenuActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-    public void seeProfile(){
-        Intent intent = new Intent(OptionMenuActivity.this, Profile.class);
-        startActivity(intent);
     }
     public void seeMainpage(){
         Intent intent = new Intent(OptionMenuActivity.this, MainActivity.class);

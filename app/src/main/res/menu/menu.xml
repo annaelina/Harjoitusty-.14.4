@@ -8,9 +8,6 @@
             android:id="@+id/Mainpage"
             android:title="Mainpage"/>
 
-        <item
-            android:id="@+id/Profile"
-            android:title="Profile"/>
 
         <item
             android:id="@+id/Findreview"
