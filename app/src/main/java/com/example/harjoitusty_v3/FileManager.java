@@ -9,26 +9,27 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class FileManager {
 
     Movie_rating movie_rating;
     Context context;
 
-    ArrayList<Movie_rating> ratedMovies = new ArrayList<>();
-    ArrayList<Movie_rating> arrayList_read = new ArrayList<>();
-    ArrayList<Movie_rating> arrayList_write;
+
 
     public FileManager(Movie_rating movie_rating, Context context){
         this.movie_rating = movie_rating;
@@ -36,28 +37,28 @@ public class FileManager {
     }
 
     public void writeFile(){
+        File file = new File(context.getFilesDir(), "movie_rating");
+        ArrayList<Movie_rating> arrayList_write = new ArrayList<>();
         try{
-            File file = new File(context.getFilesDir()+ "movie_rating.txt");
+            arrayList_write = readFile();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        try{
+            if( movie_rating != null){
+                arrayList_write.add(movie_rating);
+            }
+            else{
+                System.out.println("Movie rating was null");
+            }
 
-            if(file.exists()){
-                ArrayList<Movie_rating> arrayList_write = readFile();
-                System.out.println(arrayList_write.get(0));
-                arrayList_write.add(movie_rating);
-                FileOutputStream fos = context.openFileOutput("movie_rating.txt", Context.MODE_PRIVATE);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(arrayList_write);
-                oos.close();
-                System.out.println(arrayList_write.size());
-            }
-            else {
-                ArrayList<Movie_rating> arrayList_write = new ArrayList<>();
-                arrayList_write.add(movie_rating);
-                FileOutputStream fos = context.openFileOutput("movie_rating.txt", Context.MODE_PRIVATE);
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(arrayList_write);
-                oos.close();
-                System.out.println(arrayList_write.size());
-            }
+            FileOutputStream fos = context.openFileOutput("movie_rating", Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(arrayList_write);
+            oos.close();
+            System.out.println(arrayList_write.size());
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -67,24 +68,16 @@ public class FileManager {
     }
 
     public ArrayList<Movie_rating> readFile(){
+        ArrayList<Movie_rating> arrayList_read = new ArrayList<>();
         try{
-            FileInputStream fis = context.openFileInput("movie_rating.txt");
+            FileInputStream fis = context.openFileInput("movie_rating");
             ObjectInputStream ois = new ObjectInputStream(fis);
             arrayList_read = ((ArrayList<Movie_rating>) ois.readObject());
+            System.out.println(arrayList_read.size());
             ois.close();
             System.out.println("Luettu");
             return arrayList_read;
 
-            /*
-            if ( arrayList.size() > 0 ) {
-                System.out.println(arrayList.get(0).name);
-            }
-
-            Collections.sort(arrayList);
-
-            for(Movie_rating i : arrayList){
-                System.out.println(i.toString());
-            } */
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -93,6 +86,6 @@ public class FileManager {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+        return arrayList_read;
     }
 }

@@ -4,7 +4,7 @@ import android.widget.ArrayAdapter;
 
 import java.io.Serializable;
 
-public class Movie_rating implements Serializable {
+public class Movie_rating implements Serializable, Comparable<Movie_rating> {
 
     String name;
     Float rating;
@@ -26,13 +26,11 @@ public class Movie_rating implements Serializable {
     public String toString(){
         return name;
     }
-    /*public float getFloat(){
-        return rating;
-    }*/
+
 
     //Puts rated movies in order.
-    //@Override
-    /*public int compareTo(Movie_rating movie_rating) {
+    @Override
+    public int compareTo(Movie_rating movie_rating) {
         if (rating.floatValue() < movie_rating.rating.floatValue()) {
             return 1;
         }
@@ -42,5 +40,5 @@ public class Movie_rating implements Serializable {
         else {
             return 0;
         }
-    }*/
+    }
 }
